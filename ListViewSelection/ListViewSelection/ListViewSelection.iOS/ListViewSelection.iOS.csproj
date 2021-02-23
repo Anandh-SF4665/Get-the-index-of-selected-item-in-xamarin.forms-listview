@@ -149,9 +149,9 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Syncfusion.Xamarin.SfListView">
-      <Version>17.1.0.53</Version>
+      <Version>18.4.0.44</Version>
     </PackageReference>
-    <PackageReference Include="Xamarin.Forms" Version="4.1.0.581479" />
+    <PackageReference Include="Xamarin.Forms" Version="4.5.0.617" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
@@ -159,11 +159,5 @@
       <Project>{AAE9EE3B-E839-4DCA-BC64-F4F4A19F4F15}</Project>
       <Name>ListViewSelection</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\NotSelected.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\Selected.png" />
   </ItemGroup>
 </Project>
