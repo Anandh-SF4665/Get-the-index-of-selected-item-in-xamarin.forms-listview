@@ -1,6 +1,28 @@
-# Disable selection for particular items
+# Get the index of selected items
 
-The selection of a particular set of items can be disabled based on the [SfListView.SelectedItems](https://help.syncfusion.com/cr/cref_files/xamarin/Syncfusion.SfListView.XForms~Syncfusion.ListView.XForms.SfListView~SelectedItems.html) of the underlying collections.
+Getting the index of the selected items using the [SfListView.SelectedItems](https://help.syncfusion.com/cr/cref_files/xamarin/Syncfusion.SfListView.XForms~Syncfusion.ListView.XForms.SfListView~SelectedItems.html) of the underlying collections.
+
+## Sample
+
+```xaml
+<StackLayout>
+    <Entry x:Name="entry" HorizontalTextAlignment="Center"/>
+    <sync:SfListView x:Name="listView" ItemsSource="{Binding ContactsInfo}" SelectionMode="Single">
+        <sync:SfListView.ItemTemplate>
+            <DataTemplate>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Label Text="{Binding ContactName}" Grid.Row="0"/>
+                    <Label Text="{Binding ContactNumber}" Grid.Row="1"/>
+                </Grid>
+            </DataTemplate>
+        </sync:SfListView.ItemTemplate>
+    </sync:SfListView>
+</StackLayout>
+```
 
 ```
 public partial class MainPage : ContentPage
@@ -10,10 +32,14 @@ public partial class MainPage : ContentPage
     InitializeComponent();
   }
 
-  private void listView_SelectionChanging(object sender, Syncfusion.ListView.XForms.ItemSelectionChangingEventArgs e)
+  private void ListView_SelectionChanged(object sender, ItemSelectionChangedEventArgs e)
   {
-  if (e.AddedItems.Count > 0 && (e.AddedItems[0] as Contacts).Category == "Non-Selectable items")
-      e.Cancel = true;
+      var items = e.AddedItems;
+      for (int i = 0; items.Count > i; i++)
+      {
+          var index = ListView.DataSource.DisplayItems.IndexOf(items[i]);
+          Entry.Text = index.ToString();
+      }
   }
 }
 ```
